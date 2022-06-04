@@ -25,7 +25,9 @@
             </form>
         </div>
         <div class="col-4">
-            {{res}}
+            {%if res%}
+            <span>Result=</span>{{res}}
+            {%endif%}
         </div>
     </div>
 </div>

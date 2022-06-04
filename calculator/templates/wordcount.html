@@ -14,19 +14,30 @@
             <form action="" method="post">
                 {%csrf_token%}
                 <div class="mb-3">
-                    <input type="number" name="num1" id="" placeholder="enter number 1" class="form-control">
+                    <input type="text" name="word" id="" placeholder="enter the sentence" class="form-control">
                 </div>
+<!--                <div class="mb-3">-->
+<!--                    <input type="number" name="num2" id="" placeholder="enter number 2" class="form-control">-->
+<!--                </div>-->
                 <div class="mb-3">
-                    <input type="number" name="num2" id="" placeholder="enter number 2" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <button type="submit"></button>
+                    <button type="submit">SUBMIT</button>
                 </div>
             </form>
         </div>
         <div class="col-4">
-            {%if res%}
-            <span>Result=</span>{{res}}
+            {%if wordcounts%}
+            <table class="table">
+                <tr>
+                    <th>Words</th>
+                    <th>Count</th>
+                </tr>
+                {%for k,v in wordcounts.items%}
+                <tr>
+                    <td>{{k}}</td>
+                    <td>{{v}}</td>
+                </tr>
+                {%endfor%}
+            </table>
             {%endif%}
         </div>
     </div>

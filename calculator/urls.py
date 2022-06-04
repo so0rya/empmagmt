@@ -7,6 +7,7 @@ urlpatterns=[
     path("add",views.AddView.as_view()),
     path("sub", views.SubView.as_view()),
     path("div", views.DivView.as_view()),
-    path("fact",views.FactView.as_view())
+    path("fact",views.FactView.as_view()),
+    path("wordcount",views.WordCount.as_view())
 
 ]

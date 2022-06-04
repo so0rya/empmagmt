@@ -45,3 +45,19 @@ class FactView(View):
         result=math.factorial(int(n1))
         # print(result)
         return render(request, "fact.html",{"res":result})
+
+class WordCount(View):
+    def get(self,request):
+        return render(request,"wordcount.html")
+    def post(self,request):
+        word=request.POST.get("word")
+        wordcount=word.split(" ")
+        wc={}
+        for w in wordcount:
+            if w not in wc:
+                wc[w]=1
+            else:
+                wc[w]+=1
+
+        return render(request,"wordcount.html",{"wordcounts":wc})
+
