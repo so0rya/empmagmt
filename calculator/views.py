@@ -1,4 +1,5 @@
 import math
+from calculator.forms import OperationForm
 
 from django.shortcuts import render
 from django.views.generic import View
@@ -9,7 +10,8 @@ class HomeView(View):
 
 class AddView(View):
     def get(self,request):
-        return render(request,"add.html")
+        form=OperationForm()
+        return render(request,"add.html",{"form":form})
     def post(self,request):
         n1=request.POST.get("num1")
         n2=request.POST.get("num2")
@@ -19,7 +21,8 @@ class AddView(View):
 
 class SubView(View):
     def get(self,request):
-        return render(request,"sub.html")
+        form = OperationForm()
+        return render(request,"sub.html", {"form": form})
     def post(self,request):
         n1=request.POST.get("num1")
         n2=request.POST.get("num2")
@@ -29,7 +32,8 @@ class SubView(View):
 
 class DivView(View):
     def get(self,request):
-        return render(request,"div.html")
+        form = OperationForm()
+        return render(request, "div.html", {"form": form})
     def post(self,request):
         n1=request.POST.get("num1")
         n2=request.POST.get("num2")
@@ -60,4 +64,20 @@ class WordCount(View):
                 wc[w]+=1
 
         return render(request,"wordcount.html",{"wordcounts":wc})
+
+class PrimeNum(View):
+    def get(self, request):
+        return render(request, "primenumber.html")
+    def post(self,request):
+        a=int(request.POST.get("num1"))
+        b=int(request.POST.get("num2"))
+        count=[]
+        for i in range(a,b+1):
+            for j in range(2,i):
+                if(i%j==0):
+                    break
+                else:
+                    count.append(i)
+        return render(request, "primenumber.html",{"result":count})
+
 
