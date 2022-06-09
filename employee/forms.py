@@ -10,7 +10,12 @@ class EmployeeForm(forms.Form):
     def clean(self):
         cleaned_data=super().clean()
         exp=cleaned_data.get("experience")
+        sal=cleaned_data.get("Salary")
         if exp<0:
             msg="Invalid Experience"
             self.add_error("experience",msg)
+        if sal<0:
+            msg1 = "Invalid Salary"
+            self.add_error("Salary", msg1)
+
 

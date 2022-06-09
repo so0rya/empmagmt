@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.views.generic import View
 from employee.forms import EmployeeForm
+from django.contrib import messages
 # Create your views here.
 #function based views
 #class based views
@@ -52,6 +53,8 @@ class EmployeeCreaetView(View):
             print(form.cleaned_data.get("eid"))
             print(form.cleaned_data.get("employee_name"))
             print(form.cleaned_data.get("Email"))
-            return render(request,self.template_name,{"form":form})
+            messages.success(request,"Successfully added")
+            return redirect("add-emp")
         else:
+            messages.error(request,"Profile not added")
             return render(request,self.template_name,{"form":form})
