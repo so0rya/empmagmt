@@ -1,0 +1,12 @@
+Employee.objects.create(eid="eid100",employee_name="Ram",designation="Devaloper",Salary=20000,Email="ram@gmail.com",experience=2)
+
+Employee.objects.create(eid="eid101",employee_name="Hari",designation="Devaloper",Salary=30000,Email="hari@gmail.com",experience=2)
+Employee.objects.create(eid="eid102",employee_name="abc",designation="Devaloper",Salary=32000,Email="abc@gmail.com",experience=3)
+Employee.objects.create(eid="eid103",employee_name="def",designation="Devaloper",Salary=15000,Email="def@gmail.com")
+Employee.objects.create(eid="eid104",employee_name="Ravi",designation="HR",Salary=20000,Email="ravi@gmail.com")
+Employee.objects.create(eid="eid105",employee_name="Joy",designation="HR",Salary=30000,Email="joy@gmail.com",experience=3)
+
+orm query for retrieving objects
+qs=Modelname.objects.all()
+
+qs=Employee.objects.all()
