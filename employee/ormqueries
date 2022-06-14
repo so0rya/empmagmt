@@ -10,3 +10,9 @@ orm query for retrieving objects
 qs=Modelname.objects.all()
 
 qs=Employee.objects.all()
+qs=Employee.objects.filter()
+__gt >
+__lt <
+__lte <=
+
+qs=Employee.objects.get()
