@@ -11,8 +11,12 @@ qs=Modelname.objects.all()
 
 qs=Employee.objects.all()
 qs=Employee.objects.filter()
+
+Field Lookup
 __gt >
 __lt <
 __lte <=
+__iexact - case insensitive
+__icontains - to check for certain cases
 
 qs=Employee.objects.get()
