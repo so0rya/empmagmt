@@ -87,6 +87,22 @@ class EmployeeCreateView(View):
             messages.error(request, "employee added unsuccessfully")
             return render(request, "add-emp.html", {"form": self.form_class()})
 
+class EmployeeListView(View):
+    def get(self,request,*args,**kwargs):
+        qs=Employee.objects.all()
+        return render(request,"emp-list.html",{"employees":qs})
+
+class EmployeeDetailView(View):
+    def get(self,request,*args,**kwargs):
+        #kwargs={emp_id:emp_100}
+
+        qs=Employee.objects.get(eid=kwargs.get("emp_id"))
+        return render(request,"emp-detail.html",{"employee":qs})
+
+
+
+
+
 
 
 
