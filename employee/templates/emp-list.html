@@ -25,8 +25,18 @@
                 <td>{{emp.email}}</td>
                 <td>
                     <a href="{%url 'emp-detail' emp.eid%}">view</a>
-                    <a href="">edit</a>
-                    <a href="">delete</a>
+                    <a href="{%url 'emp-edit' emp.eid%}">edit</a>
+                    <a href="{%url 'emp-delete' emp.eid%}">delete</a>
+                    {%if messages%}
+                    {%for msg in messages%}
+                    {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong></strong> {{msg}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {%endif%}
+                    {%endfor%}
+                    {%endif%}
                 </td>
             </tr>
             {%endfor%}
