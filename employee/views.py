@@ -70,7 +70,7 @@ class EmployeeCreateView(View):
     def get(self,request,*args,**kwargs):
         return render(request,"add-emp.html",{"form":self.form_class()})
     def post(self,request,*args,**kwargs):
-        form=EmployeeCreateForm(request.POST)
+        form=EmployeeCreateForm(request.POST,files=request.FILES)
         if form.is_valid():
             form.save()
             # Employee.objects.create(
@@ -108,7 +108,7 @@ class EmployeeEditView(View):
     def post(self,request,*args,**kwargs):
         eid = kwargs.get("emp_id")
         employee = Employee.objects.get(eid=eid)
-        form = EmployeeCreateForm(request.POST, instance=employee)
+        form = EmployeeCreateForm(request.POST, instance=employee, files=request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, "employee edited successfully")

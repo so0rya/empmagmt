@@ -10,7 +10,9 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-4"></div>
+        <div class="col-4 mt-3 text-primary">
+            <h2>Add Employee</h2>
+        </div>
         <div class="col-4">
             {%if messages%}
             {%for msg in messages%}
@@ -31,19 +33,52 @@
         </div>
         <div class="col-4"></div>
     </div>
-    <div class="row mt-5">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <h2>Add Employee</h2>
-            <form action="" method="post">
+    <div class="row mt-3">
+        <div class="col-4 mt-3">
+            <form action="" method="post" enctype="multipart/form-data">
                 {%csrf_token%}
-                {{form.as_p}}
-                <input type="submit">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a href="#" class="btn btn-primary">Add profile picture:</a>
+                    <label for="{{form.profile_pic.id_for_label}}"></label>
+                {{form.profile_pic}}
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <form action="" method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                <!--                {{form.as_p}}-->
+                <div class="fieldWrapper">
+                    <label for="{{form.eid.id_for_label}}">Employee ID:</label>
+                    {{form.eid}}
+                    <label for="{{form.employee_name.id_for_label}}">Employee Name:</label>
+                    {{form.employee_name}}
+                    <label for="{{form.designation.id_for_label}}">Designation:</label>
+                    {{form.designation}}
+
+                </div>
+                <br>
             </form>
+            <input type="Submit" class="btn btn-primary">
+        </div>
+        <div class="col-4 ">
+            <form action="" method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                <label for="{{form.salary.id_for_label}}">Salary:</label>
+                {{form.salary}}
+                <label for="{{form.email.id_for_label}}">E-mail:</label>
+                {{form.email}}
+                <label for="{{form.experience.id_for_label}}">Experience:</label>
+                {{form.experience}}
+                <br><br>
         </div>
     </div>
 </div>
 </body>
 <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
 </html>

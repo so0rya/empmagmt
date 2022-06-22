@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Employee(models.Model):
     eid=models.CharField(max_length=120,primary_key=True)
+    profile_pic=models.ImageField(null=True,upload_to="profilepic")
     employee_name=models.CharField(max_length=120)
     designation=models.CharField(max_length=120)
     salary=models.PositiveIntegerField()
