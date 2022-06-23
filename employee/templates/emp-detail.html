@@ -8,32 +8,34 @@
 </head>
 <body>
 <div class="container">
+    <h2 class="text-primary">Employee Detail</h2>
+
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <h2 class="text-primary">Employee Detail</h2>
-            <div class="card" style="width: 18rem;">
-                <img src="{{employee.profile_pic.url}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{employee.employee_name}}</h5>
-                    <p class="card-text"></p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: {{employee.eid}}</li>
-                    <li class="list-group-item">Designation: {{employee.designation}}</li>
-                    <li class="list-group-item">Email: {{employee.email}}</li>
-                    <li class="list-group-item">Salary: {{employee.salary}}</li>
-
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
+        <div class="col-4 mt-3">
+            <img src="{{employee.profile_pic.url}}" class="card-img-top" alt="...">
         </div>
-        <div class="col-4"></div>
+        <div class="col-4 mt-5">
+            <!--            <h2 class="text-primary">Employee Detail</h2>-->
 
+            <li>ID: {{employee.eid}}</li>
+            <li>Designation: {{employee.designation}}</li>
+            <li>Name: {{employee.employee_name}}</li>
+
+            </ul>
+            <!--                <div class="card-body">-->
+            <!--                    <a href="#" class="card-link">Card link</a>-->
+            <!--                    <a href="#" class="card-link">Another link</a>-->
+            <!--                </div>-->
+        </div>
+
+        <div class="col-4 mt-5">
+            <li>Email: {{employee.email}}</li>
+            <li>Salary: {{employee.salary}}</li>
+            <li>Experience: {{employee.experience}}</li>
+        </div>
     </div>
+</div>
+
 </div>
 </body>
 </html>
