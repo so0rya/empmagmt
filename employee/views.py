@@ -125,7 +125,8 @@ class EmployeeDeleteView(View):
         messages.success(request, "employee deleted successfully")
         return redirect("emp-list")
 
-
+def index(request):
+    return render(request,"base.html")
 
 
 
