@@ -13,6 +13,6 @@ urlpatterns=[
     path("delete/<str:emp_id>",views.EmployeeDeleteView.as_view(),name="emp-delete"),
     path("",views.index,name="index"),
     path("accounts/signup",views.SignUpView.as_view(),name="sign-up"),
-    path("accounts/signin", views.SignInView.as_view(), name="sign-in")
-
+    path("accounts/signin", views.SignInView.as_view(), name="sign-in"),
+    path("accounts/signout",views.sign_out,name="sign-out")
 ]

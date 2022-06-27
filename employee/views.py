@@ -64,6 +64,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from employee.models import Employee
 from employee.forms import UserRegistrationForm,LoginForm
+from django.contrib.auth import authenticate,login,logout
 
 
 class EmployeeCreateView(View):
@@ -146,8 +147,21 @@ class SignUpView(View):
 class SignInView(View):
     def get(self,request,*args,**kwargs):
         form=LoginForm()
-        return render(request,"login.html",{"forms":form})
+        return render(request,"login.html",{"form":form})
+    def post(self,request):
+        form=LoginForm(request.POST)
+        if form.is_valid():
+            uname=form.cleaned_data.get("username")
+            pwd=form.cleaned_data.get("password")
+            user=authenticate(username=uname,password=pwd)
+            if user:
+                print("success")
+                login(request,user)
+                return redirect("emp-list")
+            else:
+                return render(request,"login.html",{"form":form})
 
-
-
+def sign_out(request,*args,**kwargs):
+    logout(request)
+    return redirect("sign-in")
 
