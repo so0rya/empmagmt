@@ -63,6 +63,7 @@ from employee.forms import EmployeeCreateForm
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from employee.models import Employee
+from employee.forms import UserRegistrationForm,LoginForm
 
 
 class EmployeeCreateView(View):
@@ -128,6 +129,24 @@ class EmployeeDeleteView(View):
 def index(request):
     return render(request,"base.html")
 
+class SignUpView(View):
+    def get(self,request,*args,**kwargs):
+        form=UserRegistrationForm()
+        return render(request,"registration.html",{"form":form})
+    def post(self,request,*args,**kwargs):
+        form=UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Your account has been created")
+            return redirect("sign-up")
+        else:
+            messages.error(request,"account creation failed")
+            return render(request,"registration.html",{"form":form})
+
+class SignInView(View):
+    def get(self,request,*args,**kwargs):
+        form=LoginForm()
+        return render(request,"login.html",{"forms":form})
 
 
 
