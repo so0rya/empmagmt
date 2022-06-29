@@ -65,8 +65,18 @@ from django.contrib import messages
 from employee.models import Employee
 from employee.forms import UserRegistrationForm,LoginForm
 from django.contrib.auth import authenticate,login,logout
+from django.utils.decorators import method_decorator
 
+def signin_required(fn):
+    def wrapper(request,*args,**kwargs):
+        if request.user.is_authenticated:
+            return fn(request,*args,**kwargs)
+        else:
+            messages.error(request,"You must login")
+            return redirect("sign-in")
+    return wrapper
 
+@method_decorator(signin_required,name="dispatch")
 class EmployeeCreateView(View):
     form_class=EmployeeCreateForm
     def get(self,request,*args,**kwargs):
@@ -90,17 +100,20 @@ class EmployeeCreateView(View):
             messages.error(request, "employee added unsuccessfully")
             return render(request, "add-emp.html", {"form": self.form_class()})
 
+@method_decorator(signin_required,name="dispatch")
 class EmployeeListView(View):
     def get(self,request,*args,**kwargs):
         qs=Employee.objects.all()
         return render(request,"emp-list.html",{"employees":qs})
 
+@method_decorator(signin_required,name="dispatch")
 class EmployeeDetailView(View):
     def get(self,request,*args,**kwargs):
         #kwargs={emp_id:emp_100}
         qs=Employee.objects.get(eid=kwargs.get("emp_id"))
         return render(request,"emp-detail.html",{"employee":qs})
 
+@method_decorator(signin_required,name="dispatch")
 class EmployeeEditView(View):
     def get(self,request,*args,**kwargs):
         eid=kwargs.get("emp_id")
@@ -119,6 +132,7 @@ class EmployeeEditView(View):
             messages.error(request, "employee edited unsuccessfully")
             return render(request, "add-emp.html", {"form": form})
 
+@method_decorator(signin_required,name="dispatch")
 class EmployeeDeleteView(View):
     def get(self,request,*args,**kwargs):
         eid=kwargs.get("emp_id")
@@ -127,6 +141,7 @@ class EmployeeDeleteView(View):
         messages.success(request, "employee deleted successfully")
         return redirect("emp-list")
 
+@signin_required
 def index(request):
     return render(request,"base.html")
 
@@ -155,12 +170,13 @@ class SignInView(View):
             pwd=form.cleaned_data.get("password")
             user=authenticate(username=uname,password=pwd)
             if user:
-                print("success")
+                # print("success")
                 login(request,user)
                 return redirect("emp-list")
             else:
                 return render(request,"login.html",{"form":form})
 
+@signin_required
 def sign_out(request,*args,**kwargs):
     logout(request)
     return redirect("sign-in")
